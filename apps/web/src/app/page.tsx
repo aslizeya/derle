@@ -17,8 +17,8 @@ import { Logo, ThemeToggle } from "@/components/brand";
 import { BeforeAfter } from "@/components/landing/before-after";
 import { DemoButton, UploadOwnButton } from "@/components/landing/start-buttons";
 
-// Set NEXT_PUBLIC_REPO_URL at build time to show a "source code" link.
-const REPO_URL = process.env.NEXT_PUBLIC_REPO_URL;
+// Forks can point the "source code" link elsewhere with NEXT_PUBLIC_REPO_URL at build time.
+const REPO_URL = process.env.NEXT_PUBLIC_REPO_URL ?? "https://github.com/aslizeya/derle";
 
 // Mean over five generated ledgers, see README → Benchmark. Kept in sync by hand.
 const BENCHMARK = { dates: "%100", auto: "0,90", reviewed: "0,93", cards: 11 };

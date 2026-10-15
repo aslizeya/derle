@@ -3,6 +3,7 @@
 **Dağınık verini düzene sok.**
 *Excel'ler, CSV'ler, veresiye defterleri → temiz, kalıcı ve açıklanabilir bir veritabanı.* · [English](README.md)
 
+[![CI](https://github.com/aslizeya/derle/actions/workflows/ci.yml/badge.svg)](https://github.com/aslizeya/derle/actions/workflows/ci.yml)
 ![Python 3.12](https://img.shields.io/badge/python-3.12-3776AB?logo=python&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white)
 ![DuckDB](https://img.shields.io/badge/DuckDB-FFF000?logo=duckdb&logoColor=black)
