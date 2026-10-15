@@ -1,0 +1,587 @@
+{
+  "app": {
+    "name": "Derle",
+    "tagline": "Dağınık verini düzene sok",
+    "skipToContent": "İçeriğe geç"
+  },
+  "common": {
+    "loading": "Yükleniyor…",
+    "retry": "Tekrar dene",
+    "cancel": "Vazgeç",
+    "close": "Kapat",
+    "undo": "Geri al",
+    "undone": "Geri alındı",
+    "more": "Daha fazla göster",
+    "records": "{count, number} kayıt",
+    "row": "{row}. satır",
+    "rowShort": "S{row}",
+    "sheet": "Sayfa: {name}",
+    "confidence": "Güven: %{value}",
+    "empty": "—",
+    "error": "Bir şeyler ters gitti.",
+    "errorDetail": "Sunucuya ulaşılamadı ya da beklenmeyen bir yanıt geldi.",
+    "notFound": "Aradığın kayıt bulunamadı.",
+    "showPii": "Kişisel verileri göster",
+    "hidePii": "Kişisel verileri gizle",
+    "theme": {
+      "label": "Tema",
+      "light": "Açık",
+      "dark": "Koyu",
+      "system": "Sistem"
+    }
+  },
+  "nav": {
+    "workspace": "Çalışma alanı",
+    "upload": "Yükle",
+    "matching": "Eşleştirme",
+    "data": "Veri",
+    "home": "Ana sayfa",
+    "demoBadge": "Örnek veri",
+    "menu": "Menü",
+    "dashboard": "Panel",
+    "ask": "Sor",
+    "history": "Geçmiş",
+    "more": "Daha fazla"
+  },
+  "landing": {
+    "nav": {
+      "how": "Nasıl çalışır",
+      "why": "Neden Derle",
+      "source": "Kaynak kod"
+    },
+    "hero": {
+      "eyebrow": "Esnaf, serbest çalışan ve küçük ofisler için",
+      "title": "Dağınık defterden düzenli kayda.",
+      "lead": "Her ay başka düzende tutulmuş Excel'ler, CSV'ler, veresiye listeleri… Derle hepsini okur, temizler, aynı müşteriyi farklı yazılışlarında tanır ve tek bir kalıcı veritabanında birleştirir. Her değerin nereden geldiğini de gösterir.",
+      "tryDemo": "Örnek veriyle dene",
+      "uploadOwn": "Kendi dosyanı yükle",
+      "assurance": "Giriş gerekmez · Veriler senin bilgisayarında kalır · Yapay zekâ isteğe bağlı",
+      "starting": "Hazırlanıyor…"
+    },
+    "beforeAfter": {
+      "before": "Önce",
+      "after": "Sonra",
+      "caption": "Bir bakkalın Mart ayı veresiye defterinden birkaç satır",
+      "fixes": {
+        "date": "tarih",
+        "amount": "tutar",
+        "name": "isim",
+        "phone": "telefon",
+        "duplicate": "mükerrer"
+      }
+    },
+    "problem": {
+      "title": "Veri aslında var. Sadece dağınık.",
+      "items": {
+        "formats": {
+          "title": "Her ay başka bir düzen",
+          "body": "Ocak'ta “Tutar”, Şubat'ta “Borç / Ödeme”, Mart'ta “Ne aldı”. Aynı defter, altı farklı tablo."
+        },
+        "names": {
+          "title": "Aynı kişi, beş yazılış",
+          "body": "“Ahmet Yılmaz”, “ahmet bey”, “A. Yılmaz”, “AHMET YILMAZ”, “Ahmet Yılmz”. Toplam borcu kim bilecek?"
+        },
+        "trust": {
+          "title": "Kopyala-yapıştır güveni bitirir",
+          "body": "Bir yapay zekâya dosya yüklemek tek seferlik bir cevap verir. Ertesi ay her şey baştan, neyin neden değiştiği belirsiz."
+        }
+      }
+    },
+    "how": {
+      "title": "Nasıl çalışır",
+      "steps": {
+        "upload": {
+          "title": "Yükle",
+          "body": "Excel ya da CSV dosyalarını sürükle bırak. Başlık satırları, toplamlar ve boş satırlar kendiliğinden ayıklanır."
+        },
+        "recognize": {
+          "title": "Tanı ve temizle",
+          "body": "Sütunların anlamı bulunur, Türkçe tarihler, tutarlar, isimler ve telefonlar tek biçime getirilir. Her değişiklik kayıt altındadır."
+        },
+        "match": {
+          "title": "Eşleştir",
+          "body": "Aynı müşterinin farklı yazılışları birleştirilir. Emin olunamayanlar “Bu ikisi aynı mı?” diye sana sorulur."
+        },
+        "keep": {
+          "title": "Biriktir",
+          "body": "Her yeni dosya mevcut veriye eklenir. Önceki her duruma dönebilir, her hücrenin kaynağını görebilirsin."
+        }
+      }
+    },
+    "why": {
+      "title": "Neden Derle?",
+      "lead": "Tablo araçları da yapay zekâ sohbetleri de dosyanı açabilir. Derle onu hatırlar, açıklar ve geri alınabilir tutar.",
+      "items": {
+        "persistent": {
+          "title": "Kalıcı ve birikimli",
+          "body": "Dosyalar bir kez analiz edilip unutulmaz. Her yükleme aynı veritabanına oturur, mükerrerler ayıklanır."
+        },
+        "entities": {
+          "title": "Müşteriyi tanır",
+          "body": "İsim benzerliği, baş harfler, hitaplar ve telefon birlikte değerlendirilir. Her eşleşmenin gerekçesi görünür."
+        },
+        "turkish": {
+          "title": "Türkçe'yi bilir",
+          "body": "1.234,56 ile 1,234.56; “15 Mart”, “15.03.26”, “5/3”; TL, ₺, lira; I/İ/ı/i; bey, hanım, abi."
+        },
+        "provenance": {
+          "title": "Her hücrenin kaynağı",
+          "body": "Temiz tablodaki bir değere tıkla: hangi dosyanın hangi satırından geldiğini ve orijinal halini gör."
+        },
+        "undo": {
+          "title": "Önce / sonra, geri al",
+          "body": "Yapılan her düzeltme işaretlidir ve tek tıkla geri alınabilir. Hiçbir şey silinmez."
+        },
+        "privacy": {
+          "title": "Veri senin",
+          "body": "Tamamen yerelde çalışır. Yapay zekâ kapalıyken de kurallarla çalışmaya devam eder; kişisel veriler maskelenebilir."
+        }
+      }
+    },
+    "numbers": {
+      "title": "Ölçülebilir",
+      "lead": "Doğru cevabı bilinen, kasıtlı olarak dağınık üretilmiş 6 aylık defterlerde ölçüldü.",
+      "dates": "tarih doğru okundu",
+      "auto": "eşleştirme F1 · tamamen otomatik",
+      "reviewed": "F1 · yalnızca {cards} soru cevaplandıktan sonra",
+      "note": "Ölçüm, projeyle gelen örnek veri üretecinde yapılmıştır; gerçek dosyalarda sonuçlar farklı olabilir."
+    },
+    "cta": {
+      "title": "Bir bakkalın altı aylık defteriyle dene.",
+      "body": "Altı farklı düzende, yazım hatalı, mükerrer kayıtlı gerçekçi bir örnek. Tek tık, kayıt yok."
+    },
+    "footer": {
+      "license": "MIT lisanslı açık kaynak",
+      "built": "FastAPI · DuckDB · Next.js ile"
+    }
+  },
+  "workspace": {
+    "title": "Çalışma alanı",
+    "stats": {
+      "records": "Kayıt",
+      "entities": "Müşteri",
+      "uploads": "Dosya",
+      "pending": "Bekleyen soru"
+    },
+    "datasets": "Veri setleri",
+    "datasetMeta": "{records, number} kayıt · {sources, number} kaynak tablo",
+    "duplicatesRemoved": "{count, number} mükerrer ayıklandı",
+    "open": "Tabloyu aç",
+    "uploads": "Son yüklemeler",
+    "review": "İncele",
+    "uploadStatus": {
+      "done": "İşlendi",
+      "failed": "Okunamadı",
+      "processing": "İşleniyor",
+      "undone": "Geri alındı"
+    },
+    "pendingCallout": {
+      "title": "{count, plural, one {Bir eşleşme} other {# eşleşme}} senin kararını bekliyor",
+      "body": "Emin olunamayan müşteri eşleşmelerini birkaç saniyede onayla ya da reddet.",
+      "action": "Soruları yanıtla"
+    },
+    "empty": {
+      "title": "Henüz veri yok",
+      "body": "İlk dosyanı yükle; sütunlar tanınsın, değerler temizlensin, müşteriler eşleşsin.",
+      "upload": "Dosya yükle",
+      "demo": "Örnek veriyle dene"
+    }
+  },
+  "upload": {
+    "title": "Dosya yükle",
+    "lead": "Excel (.xlsx) ve CSV dosyaları. Birden fazla dosyayı aynı anda bırakabilirsin; her biri mevcut verine eklenir.",
+    "drop": "Dosyalarını buraya bırak",
+    "dropActive": "Bırak, gerisini Derle halletsin",
+    "or": "ya da",
+    "choose": "Bilgisayarından seç",
+    "formats": ".xlsx · .csv · .tsv · en fazla 25 MB",
+    "demoBanner": "Örnek veri: bir bakkalın Ocak–Haziran veresiye defteri, altı farklı düzende.",
+    "queued": "Sırada",
+    "processing": "İşleniyor",
+    "done": "Tamamlandı",
+    "failed": "Okunamadı",
+    "reviewFile": "Önce / sonra",
+    "stats": {
+      "records": "temiz kayıt",
+      "fixes": "düzeltme",
+      "duplicates": "mükerrer ayıklandı"
+    },
+    "summary": "{files, plural, one {# dosya} other {# dosya}} · {records, number} temiz kayıt · {duplicates, number} mükerrer ayıklandı",
+    "goMatching": "{count, plural, one {Bir eşleşme sorusu} other {# eşleşme sorusu}} var",
+    "goTable": "Temiz tabloyu aç",
+    "goWorkspace": "Çalışma alanına dön",
+    "events": {
+      "file_received": "“{filename}” alındı",
+      "file_read": "{sheets, plural, one {Tek sayfa} other {# sayfa}} okundu",
+      "encoding": "Karakter kodlaması: {name}",
+      "table_detected": "Başlık {header_row}. satırda · {rows, number} veri satırı",
+      "table_detected_noheader": "Başlık satırı yok · {rows, number} veri satırı",
+      "rows_skipped": {
+        "title": "{count, number} başlık/açıklama satırı atlandı",
+        "total": "{count, number} toplam satırı ayıklandı",
+        "empty": "{count, number} boş satır atlandı",
+        "repeated_header": "{count, number} tekrar eden başlık ayıklandı"
+      },
+      "column_recognized": "{role} sütunu bulundu",
+      "column_unknown": "“{header}” sütunu açıklama olarak alındı",
+      "dataset_created": "Yeni veri seti oluşturuldu",
+      "dataset_matched": "Mevcut veri setine eklendi",
+      "values_normalized": {
+        "date_parsed": "{count, number} tarih tek biçime getirildi",
+        "number_parsed": "{count, number} tutar okundu",
+        "currency_stripped": "{count, number} değerden para birimi ayıklandı",
+        "honorific_removed": "{count, number} isimden hitap çıkarıldı (bey, hanım…)",
+        "name_normalized": "{count, number} isim düzeltildi",
+        "names_combined": "{count, number} ad ve soyad birleştirildi",
+        "phone_normalized": "{count, number} telefon tek biçime getirildi",
+        "text_trimmed": "{count, number} hücrede fazla boşluk temizlendi",
+        "parse_failed": "{count, number} değer okunamadı, incelemende işaretli"
+      },
+      "duplicates_removed": "{count, number} mükerrer kayıt ayıklandı",
+      "entities_resolved": "{entities, number} farklı müşteri tanındı",
+      "entities_pending": "{pending, number} eşleşme sorusu hazır",
+      "done": "Bitti: {rows, number} temiz kayıt"
+    },
+    "encodings": {
+      "utf-8": "UTF-8",
+      "utf-8-sig": "UTF-8",
+      "utf-16": "UTF-16",
+      "cp1254": "Türkçe Windows (cp1254)",
+      "iso-8859-9": "Türkçe ISO-8859-9",
+      "utf-8-lossy": "bilinmiyor, en yakın tahmin"
+    },
+    "errors": {
+      "corrupt_excel": "Excel dosyası açılamadı. Dosya bozuk ya da parola korumalı olabilir.",
+      "legacy_xls": "Eski .xls biçimi desteklenmiyor. Dosyayı Excel'de .xlsx olarak kaydedip tekrar yükle.",
+      "unsupported_extension": "Bu dosya türü desteklenmiyor. .xlsx ya da .csv yükle.",
+      "empty_file": "Dosya boş görünüyor.",
+      "no_data_sheets": "Dosyada veri içeren bir sayfa bulunamadı.",
+      "too_large": "Dosya 25 MB sınırını aşıyor.",
+      "internal_error": "Dosya işlenirken beklenmeyen bir hata oluştu.",
+      "network": "Sunucuya ulaşılamadı. API çalışıyor mu?"
+    }
+  },
+  "roles": {
+    "party": "Müşteri",
+    "first_name": "Ad",
+    "last_name": "Soyad",
+    "date": "Tarih",
+    "amount": "Tutar",
+    "debit": "Borç",
+    "credit": "Ödeme",
+    "balance": "Bakiye",
+    "quantity": "Miktar",
+    "phone": "Telefon",
+    "tckn": "TC Kimlik No",
+    "email": "E-posta",
+    "description": "Açıklama",
+    "category": "Kategori",
+    "identifier": "Sıra no",
+    "unknown": "Bilinmiyor"
+  },
+  "transforms": {
+    "date_parsed": "Tarih okundu",
+    "number_parsed": "Tutar okundu",
+    "currency_stripped": "Para birimi ayıklandı",
+    "honorific_removed": "Hitap çıkarıldı",
+    "name_normalized": "İsim düzeltildi",
+    "names_combined": "Ad ve soyad birleştirildi",
+    "phone_normalized": "Telefon biçimlendi",
+    "text_trimmed": "Boşluk temizlendi",
+    "parse_failed": "Okunamadı",
+    "duplicate_removed": "Mükerrer ayıklandı",
+    "details": {
+      "yearInferred": "Yıl yazılmamış, {year} kabul edildi",
+      "ambiguousOrder": "Gün/ay sırası belirsizdi, gün önce okundu",
+      "ambiguousNumber": "Ayırıcı belirsizdi, sütundaki diğer değerlere göre okundu",
+      "removed": "Çıkarılan: {words}",
+      "note": "Not: {note}",
+      "reordered": "“Soyad, Ad” sırası düzeltildi",
+      "currency": "Para birimi: {code}",
+      "duplicateOf": "Aynı satır daha önce girilmiş"
+    }
+  },
+  "reasons": {
+    "header_match": "Başlık “{keyword}” sözlükte var",
+    "values_fit": "Değerlerin %{ratio} kadarı uyuyor",
+    "values_parse": "Değerlerin %{ratio} kadarı bu türe benziyor",
+    "values_override": "Başlık başka şey diyor ama değerler açıkça {kind}",
+    "demoted_duplicate_role": "Aynı türde daha güçlü bir sütun var",
+    "llm_suggestion": "Yapay zekâ önerisi"
+  },
+  "skip": {
+    "header": "Başlık satırı: sütun adları buradan okundu",
+    "title": "Başlık / açıklama",
+    "total": "Toplam satırı",
+    "empty": "Boş satır",
+    "repeated_header": "Tekrar eden başlık"
+  },
+  "review": {
+    "title": "Önce / sonra",
+    "uploadedAt": "{date} tarihinde yüklendi",
+    "columns": "Sütunlar nasıl tanındı",
+    "original": "Dosyadaki hali",
+    "clean": "Temiz hali",
+    "onlyChanged": "Sadece değişen satırlar",
+    "changesTitle": "Yapılan düzeltmeler",
+    "noChanges": "Bu dosyada düzeltme gerekmedi.",
+    "undoUpload": "Yüklemeyi geri al",
+    "undoUploadConfirm": "Bu dosyadan gelen tüm kayıtlar temiz veriden çıkarılacak. Ham dosya saklanmaya devam eder ve işlem geçmişte görünür.",
+    "undoUploadDone": "Yükleme geri alındı",
+    "duplicateRow": "Mükerrer",
+    "skipped": "Atlandı",
+    "openTable": "Temiz tabloda aç",
+    "rows": "{shown, number} / {total, number} satır",
+    "undoneUploadBanner": "Bu yükleme geri alındı. Satırlar artık temiz veride yer almıyor."
+  },
+  "table": {
+    "search": "Tabloda ara…",
+    "linkedCustomer": "Eşleşmiş müşteri",
+    "noResults": "Aramanla eşleşen kayıt yok.",
+    "page": "{from, number}–{to, number} / {total, number}",
+    "prev": "Önceki",
+    "next": "Sonraki",
+    "sortAsc": "Artan sırala",
+    "sortDesc": "Azalan sırala",
+    "cellHint": "Kaynağını görmek için bir hücreye tıkla",
+    "marks": {
+      "changed": "Düzeltildi",
+      "original": "Düzeltme geri alındı, orijinal hali gösteriliyor",
+      "failed": "Okunamadı, orijinal hali gösteriliyor"
+    },
+    "export": "Dışa aktar",
+    "exportXlsx": "Excel (.xlsx)",
+    "exportCsv": "CSV",
+    "exportMasked": "Kişisel veriler maskeli",
+    "rename": "Adı değiştir",
+    "save": "Kaydet",
+    "quality": "Kalite"
+  },
+  "provenance": {
+    "title": "Bu değer nereden geldi?",
+    "value": "Temiz değer",
+    "original": "Dosyadaki hali",
+    "source": "Kaynak",
+    "file": "Dosya",
+    "location": "Konum",
+    "rawRow": "Satırın tamamı",
+    "steps": "Uygulanan adımlar",
+    "noSteps": "Değer olduğu gibi alındı.",
+    "seeInReview": "Önce / sonra görünümünde aç"
+  },
+  "matching": {
+    "title": "Bu iki kayıt aynı mı?",
+    "lead": "Derle'nin emin olamadığı eşleşmeler. Verdiğin her karar sonraki yüklemelerde de kullanılır.",
+    "remaining": "{count, plural, one {# soru kaldı} other {# soru kaldı}}",
+    "same": "Aynı kişi",
+    "different": "Farklı kişiler",
+    "skip": "Emin değilim",
+    "undo": "Son kararı geri al",
+    "score": "Benzerlik",
+    "evidence": "Neden soruyoruz",
+    "aliases": "Yazılışlar",
+    "phones": "Telefon",
+    "period": "Dönem",
+    "records": "{count, number} kayıt",
+    "totals": "Toplam",
+    "samples": "Örnek kayıtlar",
+    "noPhone": "Telefon yok",
+    "shortcuts": "Kısayollar",
+    "doneTitle": "Bekleyen soru yok",
+    "doneBody": "Tüm eşleşmeler netleşti. Yeni dosya yüklediğinde, emin olunamayan eşleşmeler burada belirir.",
+    "decided": {
+      "same": "Birleştirildi",
+      "different": "Ayrı tutuldu",
+      "skip": "Atlandı"
+    },
+    "evidenceCodes": {
+      "name_exact": "İsimler aynı",
+      "name_similarity": "İsim benzerliği %{value}",
+      "typo": "Tek harflik yazım farkı",
+      "initials_match": "Baş harf uyuyor",
+      "first_name_only": "Birinde yalnızca ad yazılmış",
+      "phone_match": "Aynı telefon",
+      "phone_conflict": "Farklı telefon",
+      "surname_conflict": "Soyadlar farklı",
+      "first_name_conflict": "Adlar farklı",
+      "unique_completion": "Tek olası aday"
+    }
+  },
+  "errors": {
+    "pageTitle": "Bir şeyler ters gitti",
+    "notFoundTitle": "Sayfa bulunamadı",
+    "notFoundBody": "Bu adres artık yok ya da hiç olmadı.",
+    "home": "Ana sayfaya dön"
+  },
+  "quality": {
+    "title": "Veri kalitesi",
+    "score": "Kalite skoru",
+    "outOf": "/ 100",
+    "grades": {
+      "excellent": "Çok iyi",
+      "good": "İyi",
+      "fair": "Orta",
+      "poor": "Zayıf"
+    },
+    "lead": "Skor 100'den başlar; her sorun açıklanmış, sınırlı bir puan düşürür. Aşağıdaki öneriler en çok puan kazandıranlardan başlar.",
+    "open": "Kalite raporu",
+    "noIssues": "Sorun bulunamadı. Bu veri seti temiz görünüyor.",
+    "empty": "Bu veri setinde henüz kayıt yok.",
+    "penalty": "−{value} puan",
+    "fields": "Alan doluluğu",
+    "severity": {
+      "serious": "Önemli",
+      "warning": "Dikkat",
+      "info": "Bilgi"
+    },
+    "issues": {
+      "missing_values": "{field} {count, plural, one {bir kayıtta} other {# kayıtta}} boş",
+      "unreadable_values": "{count, plural, one {Bir değer} other {# değer}} okunamadı",
+      "pending_matches": "{count, plural, one {Bir müşteri eşleşmesi} other {# müşteri eşleşmesi}} onay bekliyor",
+      "uncertain_values": "{count, plural, one {Bir değer} other {# değer}} tahminle okundu",
+      "outliers": "{field} sütununda {count, plural, one {bir olağandışı tutar} other {# olağandışı tutar}}",
+      "future_dates": "{count, plural, one {Bir kayıt} other {# kayıt}} ileri tarihli"
+    },
+    "fixes": {
+      "missing_values": "Eksik değerleri tabloda gör; gerekiyorsa kaynak dosyayı düzeltip yeniden yükle.",
+      "unreadable_values": "Önce / sonra görünümünde işaretli hücreleri kontrol et.",
+      "pending_matches": "Eşleştirme sorularını yanıtla; her karar toplamları doğrudan etkiler.",
+      "uncertain_values": "Yıl tahmini ya da gün/ay sırası belirsiz olan değerleri gözden geçir.",
+      "outliers": "En büyük tutarları kontrol et (örnek: {examples}). Fazladan sıfır olabilir.",
+      "future_dates": "Tarihleri kontrol et; gün ve ay yer değiştirmiş olabilir."
+    },
+    "uncertainDetail": "{year_inferred} yıl tahmini · {ambiguous_order} gün/ay belirsiz · {ambiguous_number} ayırıcı belirsiz",
+    "moneyField": "Tutar",
+    "fix": "Düzelt",
+    "notes": {
+      "duplicates_removed": "{count, number} mükerrer kayıt zaten ayıklandı."
+    }
+  },
+  "dashboard": {
+    "title": "Panel",
+    "lead": "Verinin yapısına göre kendiliğinden hazırlandı: müşteri, tarih ve tutar bulunduğunda en çok sorulan üç soru cevaplanır.",
+    "dataset": "Veri seti",
+    "kpis": {
+      "records": "Kayıt",
+      "customers": "Müşteri",
+      "sales": "Toplam borç (veresiye)",
+      "payments": "Toplam ödeme",
+      "open_balance": "Açık bakiye",
+      "period": "Dönem"
+    },
+    "charts": {
+      "monthly": "Aylık borç ve ödeme",
+      "top_customers_open_balance": "En yüksek açık bakiye",
+      "top_customers_sales": "En çok veresiye alan müşteriler",
+      "by_category": "Kategoriye göre borç"
+    },
+    "series": {
+      "sales": "Borç",
+      "payments": "Ödeme",
+      "open_balance": "Açık bakiye"
+    },
+    "showSql": "Bu grafiği üreten SQL",
+    "showTable": "Tablo olarak göster",
+    "hideTable": "Grafiğe dön",
+    "nothing": "Bu veri setinde grafik çizilecek tarih ya da tutar bulunamadı.",
+    "empty": "Panel için önce veri yükle.",
+    "detected": "Bulunanlar: {items}",
+    "axis": {
+      "month": "Ay",
+      "customer": "Müşteri",
+      "category": "Kategori"
+    }
+  },
+  "ask": {
+    "title": "Verine sor",
+    "lead": "Soruyu Türkçe yaz; Derle onu SQL'e çevirir, sadece okuyarak çalıştırır ve kullandığı sorguyu gösterir.",
+    "placeholder": "Örneğin: Geçen ay en çok kim borçlandı?",
+    "submit": "Sor",
+    "examples": "Örnek sorular",
+    "exampleList": [
+      "Geçen ay en çok kim borçlandı?",
+      "En çok borcu olan 5 müşteri",
+      "Hangi ay en çok satış yaptık?",
+      "Mart'ta ne kadar ödeme alındı?",
+      "Kaç müşterim var?",
+      "Bu yıl ortalama alışveriş ne kadar?"
+    ],
+    "recent": "Son sorular",
+    "thinking": "Sorgu hazırlanıyor…",
+    "engine": {
+      "rules": "Kural tabanlı",
+      "llm": "Yapay zekâ",
+      "none": "—"
+    },
+    "showSql": "Çalıştırılan SQL",
+    "readOnly": "Salt-okunur · yalnızca izin verilen görünüm",
+    "copy": "Kopyala",
+    "copied": "Kopyalandı",
+    "rows": "{count, plural, one {# satır} other {# satır}}",
+    "truncated": "İlk {count, number} satır gösteriliyor",
+    "duration": "{ms, number} ms",
+    "anchorNote": "Verideki son tarih {date} olduğu için “geçen ay”, “bu yıl” gibi ifadeler bu tarihe göre hesaplandı.",
+    "explain": {
+      "metric": {
+        "sales": "borç (veresiye)",
+        "payments": "ödeme",
+        "balance": "açık bakiye",
+        "count": "kayıt sayısı",
+        "customers": "müşteri sayısı"
+      },
+      "group": {
+        "customer": "müşteriye göre",
+        "month": "aya göre",
+        "day": "güne göre"
+      },
+      "order": {
+        "desc": "en yüksekten",
+        "asc": "en düşükten"
+      },
+      "period": "{start} – {end}",
+      "customer": "yalnızca {name}",
+      "average": "ortalama"
+    },
+    "answer": "Cevap",
+    "errors": {
+      "not_understood": "Bu soruyu anlayamadım. Borç, ödeme, bakiye, müşteri ya da ay içeren bir soru dene.",
+      "llm_no_answer": "Yapay zekâ bu soru için uygun bir sorgu üretemedi.",
+      "customer_not_found": "“{name}” adında bir müşteri bulamadım. Yazılışı kontrol et ya da tabloda ara.",
+      "no_money": "Bu veri setinde tutar sütunu yok.",
+      "no_payments": "Bu veri setinde ödeme bilgisi yok.",
+      "no_dates": "Bu veri setinde tarih sütunu yok.",
+      "no_customers": "Bu veri setinde müşteri sütunu yok.",
+      "no_data": "Önce veri yükle.",
+      "timeout": "Sorgu çok uzun sürdü ve durduruldu.",
+      "execution_failed": "Sorgu çalıştırılamadı.",
+      "rejected": "Üretilen sorgu güvenlik kontrolünden geçemedi ve çalıştırılmadı."
+    },
+    "readOnlyShort": "Salt-okunur"
+  },
+  "history": {
+    "title": "Geçmiş",
+    "lead": "Her yükleme, düzeltme ve karar bir versiyon olarak saklanır. Herhangi bir ana dönebilirsin; dönmek de yeni bir versiyondur, hiçbir şey silinmez.",
+    "current": "Şu anki durum",
+    "restore": "Bu duruma dön",
+    "restoreTitle": "Bu duruma dönülsün mü?",
+    "restoreBody": "Veri, {date} tarihindeki haline getirilecek. Sonraki değişiklikler silinmez; geçmişte kalır ve istediğinde onlara da dönebilirsin.",
+    "restored": "Geri dönüldü",
+    "counts": "+{added, number} kayıt · −{removed, number} kayıt · {changed, number} hücre değişti",
+    "kinds": {
+      "upload": "“{filename}” yüklendi",
+      "match_decision": {
+        "same": "{a} ve {b} aynı kişi olarak birleştirildi",
+        "different": "{a} ve {b} ayrı tutuldu",
+        "skip": "{a} / {b} sorusu atlandı"
+      },
+      "undo": {
+        "decision": "Son eşleştirme kararı geri alındı",
+        "transformation": "Bir düzeltme geri alındı ({kind})",
+        "upload": "“{filename}” yüklemesi geri alındı"
+      },
+      "restore": "{version}. versiyona geri dönüldü",
+      "unknown": "{message}"
+    },
+    "empty": "Henüz geçmiş yok. İlk yüklemen burada görünecek."
+  }
+}

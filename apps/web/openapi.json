@@ -1,0 +1,3972 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Derle API",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/api/v1/health": {
+      "get": {
+        "tags": [
+          "workspaces"
+        ],
+        "summary": "Health",
+        "operationId": "health_api_v1_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "boolean"
+                      }
+                    ]
+                  },
+                  "type": "object",
+                  "title": "Response Health Api V1 Health Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/workspaces": {
+      "get": {
+        "tags": [
+          "workspaces"
+        ],
+        "summary": "List Workspaces",
+        "operationId": "list_workspaces_api_v1_workspaces_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/WorkspaceOut"
+                  },
+                  "type": "array",
+                  "title": "Response List Workspaces Api V1 Workspaces Get"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "workspaces"
+        ],
+        "summary": "Create Workspace",
+        "operationId": "create_workspace_api_v1_workspaces_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkspaceIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkspaceOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/workspaces/{workspace_id}": {
+      "get": {
+        "tags": [
+          "workspaces"
+        ],
+        "summary": "Get Workspace",
+        "operationId": "get_workspace_api_v1_workspaces__workspace_id__get",
+        "parameters": [
+          {
+            "name": "workspace_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Workspace Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkspaceSummary"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/workspaces/{workspace_id}/uploads": {
+      "post": {
+        "tags": [
+          "uploads"
+        ],
+        "summary": "Upload File",
+        "operationId": "upload_file_api_v1_workspaces__workspace_id__uploads_post",
+        "parameters": [
+          {
+            "name": "workspace_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Workspace Id"
+            }
+          },
+          {
+            "name": "dataset_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Dataset Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_upload_file_api_v1_workspaces__workspace_id__uploads_post"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UploadOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "uploads"
+        ],
+        "summary": "List Uploads",
+        "operationId": "list_uploads_api_v1_workspaces__workspace_id__uploads_get",
+        "parameters": [
+          {
+            "name": "workspace_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Workspace Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UploadListItem"
+                  },
+                  "title": "Response List Uploads Api V1 Workspaces  Workspace Id  Uploads Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/workspaces/{workspace_id}/uploads/stream": {
+      "post": {
+        "tags": [
+          "uploads"
+        ],
+        "summary": "Upload File Stream",
+        "description": "Same as the plain upload, but streams pipeline events as Server-Sent Events.\n\nEvents: ``event`` (one per pipeline step), then exactly one of ``result`` (an\n``UploadOut``) or ``error`` (``{code, upload_id}``).",
+        "operationId": "upload_file_stream_api_v1_workspaces__workspace_id__uploads_stream_post",
+        "parameters": [
+          {
+            "name": "workspace_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Workspace Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_upload_file_stream_api_v1_workspaces__workspace_id__uploads_stream_post"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "text/event-stream": {}
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/uploads/{upload_id}": {
+      "get": {
+        "tags": [
+          "uploads"
+        ],
+        "summary": "Get Upload",
+        "operationId": "get_upload_api_v1_uploads__upload_id__get",
+        "parameters": [
+          {
+            "name": "upload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Upload Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UploadDetail"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/uploads/{upload_id}/undo": {
+      "post": {
+        "tags": [
+          "uploads"
+        ],
+        "summary": "Undo Upload",
+        "operationId": "undo_upload_api_v1_uploads__upload_id__undo_post",
+        "parameters": [
+          {
+            "name": "upload_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Upload Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VersionOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tables/{table_id}/diff": {
+      "get": {
+        "tags": [
+          "uploads"
+        ],
+        "summary": "Table Diff",
+        "description": "Before/after view: every raw row (including skipped ones) next to its clean record.",
+        "operationId": "table_diff_api_v1_tables__table_id__diff_get",
+        "parameters": [
+          {
+            "name": "table_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Table Id"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 500,
+              "minimum": 1,
+              "default": 100,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0,
+              "title": "Offset"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TableDiff"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tables/{table_id}/transformations": {
+      "get": {
+        "tags": [
+          "uploads"
+        ],
+        "summary": "List Transformations",
+        "operationId": "list_transformations_api_v1_tables__table_id__transformations_get",
+        "parameters": [
+          {
+            "name": "table_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Table Id"
+            }
+          },
+          {
+            "name": "kind",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Kind"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 500,
+              "minimum": 1,
+              "default": 100,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0,
+              "title": "Offset"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransformPage"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/transformations/{transformation_id}/undo": {
+      "post": {
+        "tags": [
+          "uploads"
+        ],
+        "summary": "Undo Transformation",
+        "operationId": "undo_transformation_api_v1_transformations__transformation_id__undo_post",
+        "parameters": [
+          {
+            "name": "transformation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Transformation Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VersionOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/workspaces/{workspace_id}/datasets": {
+      "get": {
+        "tags": [
+          "datasets"
+        ],
+        "summary": "List Datasets",
+        "operationId": "list_datasets_api_v1_workspaces__workspace_id__datasets_get",
+        "parameters": [
+          {
+            "name": "workspace_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Workspace Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DatasetSummary"
+                  },
+                  "title": "Response List Datasets Api V1 Workspaces  Workspace Id  Datasets Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/datasets/{dataset_id}": {
+      "get": {
+        "tags": [
+          "datasets"
+        ],
+        "summary": "Get Dataset",
+        "operationId": "get_dataset_api_v1_datasets__dataset_id__get",
+        "parameters": [
+          {
+            "name": "dataset_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Dataset Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DatasetOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "analytics"
+        ],
+        "summary": "Rename Dataset",
+        "operationId": "rename_dataset_api_v1_datasets__dataset_id__patch",
+        "parameters": [
+          {
+            "name": "dataset_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Dataset Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RenameIn"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response Rename Dataset Api V1 Datasets  Dataset Id  Patch"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/datasets/{dataset_id}/records": {
+      "get": {
+        "tags": [
+          "datasets"
+        ],
+        "summary": "List Records",
+        "operationId": "list_records_api_v1_datasets__dataset_id__records_get",
+        "parameters": [
+          {
+            "name": "dataset_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Dataset Id"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 500,
+              "minimum": 1,
+              "default": 100,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0,
+              "title": "Offset"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 100
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Sort"
+            }
+          },
+          {
+            "name": "desc",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "title": "Desc"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 100
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Q"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecordsPage"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/records/{record_id}/cells/{field_id}/provenance": {
+      "get": {
+        "tags": [
+          "datasets"
+        ],
+        "summary": "Cell Provenance",
+        "operationId": "cell_provenance_api_v1_records__record_id__cells__field_id__provenance_get",
+        "parameters": [
+          {
+            "name": "record_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Record Id"
+            }
+          },
+          {
+            "name": "field_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Field Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProvenanceOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/workspaces/{workspace_id}/matches": {
+      "get": {
+        "tags": [
+          "matching"
+        ],
+        "summary": "List Matches",
+        "operationId": "list_matches_api_v1_workspaces__workspace_id__matches_get",
+        "parameters": [
+          {
+            "name": "workspace_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Workspace Id"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                "pending",
+                "accepted",
+                "rejected",
+                "skipped"
+              ],
+              "type": "string",
+              "default": "pending",
+              "title": "Status"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 20,
+              "title": "Limit"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MatchQueue"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/matches/{candidate_id}/decision": {
+      "post": {
+        "tags": [
+          "matching"
+        ],
+        "summary": "Decide Match",
+        "operationId": "decide_match_api_v1_matches__candidate_id__decision_post",
+        "parameters": [
+          {
+            "name": "candidate_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Candidate Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DecisionIn"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResolutionOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/workspaces/{workspace_id}/matches/undo": {
+      "post": {
+        "tags": [
+          "matching"
+        ],
+        "summary": "Undo Match",
+        "operationId": "undo_match_api_v1_workspaces__workspace_id__matches_undo_post",
+        "parameters": [
+          {
+            "name": "workspace_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Workspace Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UndoOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/workspaces/{workspace_id}/entities": {
+      "get": {
+        "tags": [
+          "matching"
+        ],
+        "summary": "List Entities",
+        "operationId": "list_entities_api_v1_workspaces__workspace_id__entities_get",
+        "parameters": [
+          {
+            "name": "workspace_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Workspace Id"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 100
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Q"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 500,
+              "minimum": 1,
+              "default": 100,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0,
+              "title": "Offset"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntitiesPage"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/entities/{entity_id}": {
+      "get": {
+        "tags": [
+          "matching"
+        ],
+        "summary": "Get Entity",
+        "operationId": "get_entity_api_v1_entities__entity_id__get",
+        "parameters": [
+          {
+            "name": "entity_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Entity Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntitySummary"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/datasets/{dataset_id}/quality": {
+      "get": {
+        "tags": [
+          "analytics"
+        ],
+        "summary": "Get Quality",
+        "operationId": "get_quality_api_v1_datasets__dataset_id__quality_get",
+        "parameters": [
+          {
+            "name": "dataset_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Dataset Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QualityReport"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/datasets/{dataset_id}/dashboard": {
+      "get": {
+        "tags": [
+          "analytics"
+        ],
+        "summary": "Get Dashboard",
+        "operationId": "get_dashboard_api_v1_datasets__dataset_id__dashboard_get",
+        "parameters": [
+          {
+            "name": "dataset_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Dataset Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Dashboard"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/datasets/{dataset_id}/export": {
+      "get": {
+        "tags": [
+          "analytics"
+        ],
+        "summary": "Export Dataset",
+        "operationId": "export_dataset_api_v1_datasets__dataset_id__export_get",
+        "parameters": [
+          {
+            "name": "dataset_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Dataset Id"
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                "xlsx",
+                "csv"
+              ],
+              "type": "string",
+              "default": "xlsx",
+              "title": "Format"
+            }
+          },
+          {
+            "name": "mask",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "title": "Mask"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/workspaces/{workspace_id}/ask": {
+      "post": {
+        "tags": [
+          "analytics"
+        ],
+        "summary": "Ask Question",
+        "operationId": "ask_question_api_v1_workspaces__workspace_id__ask_post",
+        "parameters": [
+          {
+            "name": "workspace_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Workspace Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AskIn"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Answer"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/workspaces/{workspace_id}/questions": {
+      "get": {
+        "tags": [
+          "analytics"
+        ],
+        "summary": "List Questions",
+        "operationId": "list_questions_api_v1_workspaces__workspace_id__questions_get",
+        "parameters": [
+          {
+            "name": "workspace_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Workspace Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RecentQuestion"
+                  },
+                  "title": "Response List Questions Api V1 Workspaces  Workspace Id  Questions Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/workspaces/{workspace_id}/versions": {
+      "get": {
+        "tags": [
+          "analytics"
+        ],
+        "summary": "List Versions",
+        "operationId": "list_versions_api_v1_workspaces__workspace_id__versions_get",
+        "parameters": [
+          {
+            "name": "workspace_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Workspace Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/VersionItem"
+                  },
+                  "title": "Response List Versions Api V1 Workspaces  Workspace Id  Versions Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/workspaces/{workspace_id}/versions/{version_id}/restore": {
+      "post": {
+        "tags": [
+          "analytics"
+        ],
+        "summary": "Restore Version",
+        "operationId": "restore_version_api_v1_workspaces__workspace_id__versions__version_id__restore_post",
+        "parameters": [
+          {
+            "name": "workspace_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Workspace Id"
+            }
+          },
+          {
+            "name": "version_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Version Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RestoreOut"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/demo/workspaces": {
+      "post": {
+        "tags": [
+          "demo"
+        ],
+        "summary": "Create Demo Workspace",
+        "operationId": "create_demo_workspace_api_v1_demo_workspaces_post",
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkspaceOut"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/demo/files": {
+      "get": {
+        "tags": [
+          "demo"
+        ],
+        "summary": "List Demo Files",
+        "operationId": "list_demo_files_api_v1_demo_files_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/DemoFile"
+                  },
+                  "type": "array",
+                  "title": "Response List Demo Files Api V1 Demo Files Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/demo/files/{name}": {
+      "get": {
+        "tags": [
+          "demo"
+        ],
+        "summary": "Get Demo File",
+        "operationId": "get_demo_file_api_v1_demo_files__name__get",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Name"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AliasOut": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "count": {
+            "type": "integer",
+            "title": "Count"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "count"
+        ],
+        "title": "AliasOut"
+      },
+      "Answer": {
+        "properties": {
+          "question": {
+            "type": "string",
+            "title": "Question"
+          },
+          "dataset_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dataset Id"
+          },
+          "engine": {
+            "type": "string",
+            "enum": [
+              "rules",
+              "llm",
+              "none"
+            ],
+            "title": "Engine"
+          },
+          "sql": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sql"
+          },
+          "columns": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Columns"
+          },
+          "rows": {
+            "items": {
+              "items": {},
+              "type": "array"
+            },
+            "type": "array",
+            "title": "Rows"
+          },
+          "truncated": {
+            "type": "boolean",
+            "title": "Truncated"
+          },
+          "chart": {
+            "type": "string",
+            "enum": [
+              "kpi",
+              "bar",
+              "column",
+              "table"
+            ],
+            "title": "Chart"
+          },
+          "explanation": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Explanation"
+          },
+          "llm_explanation": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Llm Explanation"
+          },
+          "anchor": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Anchor"
+          },
+          "error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error"
+          },
+          "error_params": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Error Params",
+            "default": {}
+          },
+          "duration_ms": {
+            "type": "integer",
+            "title": "Duration Ms"
+          }
+        },
+        "type": "object",
+        "required": [
+          "question",
+          "dataset_id",
+          "engine",
+          "sql",
+          "columns",
+          "rows",
+          "truncated",
+          "chart",
+          "explanation",
+          "llm_explanation",
+          "anchor",
+          "error",
+          "duration_ms"
+        ],
+        "title": "Answer"
+      },
+      "AskIn": {
+        "properties": {
+          "question": {
+            "type": "string",
+            "maxLength": 300,
+            "minLength": 2,
+            "title": "Question"
+          },
+          "dataset_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dataset Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "question"
+        ],
+        "title": "AskIn"
+      },
+      "Body_upload_file_api_v1_workspaces__workspace_id__uploads_post": {
+        "properties": {
+          "file": {
+            "type": "string",
+            "contentMediaType": "application/octet-stream",
+            "title": "File"
+          }
+        },
+        "type": "object",
+        "required": [
+          "file"
+        ],
+        "title": "Body_upload_file_api_v1_workspaces__workspace_id__uploads_post"
+      },
+      "Body_upload_file_stream_api_v1_workspaces__workspace_id__uploads_stream_post": {
+        "properties": {
+          "file": {
+            "type": "string",
+            "contentMediaType": "application/octet-stream",
+            "title": "File"
+          }
+        },
+        "type": "object",
+        "required": [
+          "file"
+        ],
+        "title": "Body_upload_file_stream_api_v1_workspaces__workspace_id__uploads_stream_post"
+      },
+      "CardSide": {
+        "properties": {
+          "profile": {
+            "type": "string",
+            "title": "Profile"
+          },
+          "entity": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EntitySummary"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "profile",
+          "entity"
+        ],
+        "title": "CardSide"
+      },
+      "CellMark": {
+        "properties": {
+          "state": {
+            "type": "string",
+            "enum": [
+              "changed",
+              "original",
+              "failed"
+            ],
+            "title": "State"
+          },
+          "kinds": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Kinds"
+          },
+          "raw": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Raw"
+          }
+        },
+        "type": "object",
+        "required": [
+          "state",
+          "kinds",
+          "raw"
+        ],
+        "title": "CellMark"
+      },
+      "Chart": {
+        "properties": {
+          "key": {
+            "type": "string",
+            "title": "Key"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "column",
+              "bar"
+            ],
+            "title": "Kind"
+          },
+          "x": {
+            "type": "string",
+            "title": "X"
+          },
+          "series": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Series"
+          },
+          "rows": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Rows"
+          },
+          "sql": {
+            "type": "string",
+            "title": "Sql"
+          }
+        },
+        "type": "object",
+        "required": [
+          "key",
+          "kind",
+          "x",
+          "series",
+          "rows",
+          "sql"
+        ],
+        "title": "Chart"
+      },
+      "ColumnInference": {
+        "properties": {
+          "col_index": {
+            "type": "integer",
+            "title": "Col Index"
+          },
+          "header": {
+            "type": "string",
+            "title": "Header"
+          },
+          "role": {
+            "$ref": "#/components/schemas/ColumnRole"
+          },
+          "confidence": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Confidence"
+          },
+          "reasons": {
+            "items": {
+              "$ref": "#/components/schemas/Reason"
+            },
+            "type": "array",
+            "title": "Reasons"
+          },
+          "engine": {
+            "type": "string",
+            "title": "Engine",
+            "default": "rules"
+          }
+        },
+        "type": "object",
+        "required": [
+          "col_index",
+          "header",
+          "role",
+          "confidence"
+        ],
+        "title": "ColumnInference"
+      },
+      "ColumnRole": {
+        "type": "string",
+        "enum": [
+          "party",
+          "first_name",
+          "last_name",
+          "date",
+          "amount",
+          "debit",
+          "credit",
+          "balance",
+          "quantity",
+          "phone",
+          "tckn",
+          "email",
+          "description",
+          "category",
+          "identifier",
+          "unknown"
+        ],
+        "title": "ColumnRole"
+      },
+      "Dashboard": {
+        "properties": {
+          "dataset_id": {
+            "type": "integer",
+            "title": "Dataset Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "detected": {
+            "additionalProperties": {
+              "type": "boolean"
+            },
+            "type": "object",
+            "title": "Detected"
+          },
+          "kpis": {
+            "items": {
+              "$ref": "#/components/schemas/Kpi"
+            },
+            "type": "array",
+            "title": "Kpis"
+          },
+          "charts": {
+            "items": {
+              "$ref": "#/components/schemas/Chart"
+            },
+            "type": "array",
+            "title": "Charts"
+          }
+        },
+        "type": "object",
+        "required": [
+          "dataset_id",
+          "name",
+          "detected",
+          "kpis",
+          "charts"
+        ],
+        "title": "Dashboard"
+      },
+      "DatasetOut": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "workspace_id": {
+            "type": "integer",
+            "title": "Workspace Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "fields": {
+            "items": {
+              "$ref": "#/components/schemas/FieldOut"
+            },
+            "type": "array",
+            "title": "Fields"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "workspace_id",
+          "name",
+          "fields"
+        ],
+        "title": "DatasetOut"
+      },
+      "DatasetSummary": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "created_at": {
+            "type": "string",
+            "title": "Created At"
+          },
+          "records": {
+            "type": "integer",
+            "title": "Records"
+          },
+          "duplicates": {
+            "type": "integer",
+            "title": "Duplicates"
+          },
+          "sources": {
+            "type": "integer",
+            "title": "Sources"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "created_at",
+          "records",
+          "duplicates",
+          "sources"
+        ],
+        "title": "DatasetSummary"
+      },
+      "DecisionIn": {
+        "properties": {
+          "decision": {
+            "type": "string",
+            "enum": [
+              "same",
+              "different",
+              "skip"
+            ],
+            "title": "Decision"
+          }
+        },
+        "type": "object",
+        "required": [
+          "decision"
+        ],
+        "title": "DecisionIn"
+      },
+      "DemoFile": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "size": {
+            "type": "integer",
+            "title": "Size"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "size"
+        ],
+        "title": "DemoFile"
+      },
+      "DiffRecord": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "duplicate_of": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duplicate Of"
+          },
+          "values": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Values"
+          },
+          "transforms": {
+            "additionalProperties": {
+              "items": {
+                "$ref": "#/components/schemas/TransformOut"
+              },
+              "type": "array"
+            },
+            "type": "object",
+            "title": "Transforms"
+          },
+          "row_transforms": {
+            "items": {
+              "$ref": "#/components/schemas/TransformOut"
+            },
+            "type": "array",
+            "title": "Row Transforms",
+            "default": []
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "status",
+          "duplicate_of",
+          "values",
+          "transforms"
+        ],
+        "title": "DiffRecord"
+      },
+      "DiffRow": {
+        "properties": {
+          "row_index": {
+            "type": "integer",
+            "title": "Row Index"
+          },
+          "raw": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Raw"
+          },
+          "skip_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Skip Reason"
+          },
+          "record": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DiffRecord"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "row_index",
+          "raw",
+          "skip_reason",
+          "record"
+        ],
+        "title": "DiffRow"
+      },
+      "EntitiesPage": {
+        "properties": {
+          "total": {
+            "type": "integer",
+            "title": "Total"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/EntityListItem"
+            },
+            "type": "array",
+            "title": "Items"
+          }
+        },
+        "type": "object",
+        "required": [
+          "total",
+          "items"
+        ],
+        "title": "EntitiesPage"
+      },
+      "EntityListItem": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "record_count": {
+            "type": "integer",
+            "title": "Record Count"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "record_count"
+        ],
+        "title": "EntityListItem"
+      },
+      "EntitySummary": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "workspace_id": {
+            "type": "integer",
+            "title": "Workspace Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "record_count": {
+            "type": "integer",
+            "title": "Record Count"
+          },
+          "aliases": {
+            "items": {
+              "$ref": "#/components/schemas/AliasOut"
+            },
+            "type": "array",
+            "title": "Aliases"
+          },
+          "phones": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Phones"
+          },
+          "first_date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "First Date"
+          },
+          "last_date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Date"
+          },
+          "totals": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "type": "object",
+            "title": "Totals"
+          },
+          "samples": {
+            "items": {
+              "$ref": "#/components/schemas/RecordFact"
+            },
+            "type": "array",
+            "title": "Samples"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "workspace_id",
+          "name",
+          "record_count",
+          "aliases",
+          "phones",
+          "first_date",
+          "last_date",
+          "totals",
+          "samples"
+        ],
+        "title": "EntitySummary"
+      },
+      "EvidenceOut": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Code"
+          },
+          "weight": {
+            "type": "number",
+            "title": "Weight"
+          },
+          "value": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Value"
+          }
+        },
+        "type": "object",
+        "required": [
+          "code",
+          "weight"
+        ],
+        "title": "EvidenceOut"
+      },
+      "FieldCompleteness": {
+        "properties": {
+          "key": {
+            "type": "string",
+            "title": "Key"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "role": {
+            "type": "string",
+            "title": "Role"
+          },
+          "filled": {
+            "type": "integer",
+            "title": "Filled"
+          },
+          "ratio": {
+            "type": "number",
+            "title": "Ratio"
+          }
+        },
+        "type": "object",
+        "required": [
+          "key",
+          "label",
+          "role",
+          "filled",
+          "ratio"
+        ],
+        "title": "FieldCompleteness"
+      },
+      "FieldOut": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "key": {
+            "type": "string",
+            "title": "Key"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "role": {
+            "type": "string",
+            "title": "Role"
+          },
+          "dtype": {
+            "type": "string",
+            "title": "Dtype"
+          },
+          "position": {
+            "type": "integer",
+            "title": "Position"
+          },
+          "pii": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Pii"
+          },
+          "column": {
+            "type": "string",
+            "title": "Column"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "key",
+          "label",
+          "role",
+          "dtype",
+          "position",
+          "pii",
+          "column"
+        ],
+        "title": "FieldOut"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "Kpi": {
+        "properties": {
+          "key": {
+            "type": "string",
+            "title": "Key"
+          },
+          "value": {
+            "title": "Value"
+          },
+          "format": {
+            "type": "string",
+            "enum": [
+              "count",
+              "money",
+              "date_range"
+            ],
+            "title": "Format"
+          },
+          "sql": {
+            "type": "string",
+            "title": "Sql"
+          }
+        },
+        "type": "object",
+        "required": [
+          "key",
+          "value",
+          "format",
+          "sql"
+        ],
+        "title": "Kpi"
+      },
+      "MatchCard": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "score": {
+            "type": "number",
+            "title": "Score"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceOut"
+            },
+            "type": "array",
+            "title": "Evidence"
+          },
+          "left": {
+            "$ref": "#/components/schemas/CardSide"
+          },
+          "right": {
+            "$ref": "#/components/schemas/CardSide"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "score",
+          "status",
+          "evidence",
+          "left",
+          "right"
+        ],
+        "title": "MatchCard"
+      },
+      "MatchQueue": {
+        "properties": {
+          "total": {
+            "type": "integer",
+            "title": "Total"
+          },
+          "cards": {
+            "items": {
+              "$ref": "#/components/schemas/MatchCard"
+            },
+            "type": "array",
+            "title": "Cards"
+          }
+        },
+        "type": "object",
+        "required": [
+          "total",
+          "cards"
+        ],
+        "title": "MatchQueue"
+      },
+      "PipelineEvent": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Code"
+          },
+          "params": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Params"
+          }
+        },
+        "type": "object",
+        "required": [
+          "code"
+        ],
+        "title": "PipelineEvent",
+        "description": "Progress signal emitted while an upload is processed (streamed to the UI via SSE)."
+      },
+      "ProvenanceOut": {
+        "properties": {
+          "record_id": {
+            "type": "integer",
+            "title": "Record Id"
+          },
+          "field": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Field"
+          },
+          "value": {
+            "title": "Value"
+          },
+          "original": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Original"
+          },
+          "source": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Source"
+          },
+          "record_status": {
+            "type": "string",
+            "title": "Record Status"
+          },
+          "duplicate_of": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duplicate Of"
+          },
+          "transforms": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Transforms"
+          }
+        },
+        "type": "object",
+        "required": [
+          "record_id",
+          "field",
+          "value",
+          "original",
+          "source",
+          "record_status",
+          "duplicate_of",
+          "transforms"
+        ],
+        "title": "ProvenanceOut"
+      },
+      "QualityIssue": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Code"
+          },
+          "count": {
+            "type": "integer",
+            "title": "Count"
+          },
+          "penalty": {
+            "type": "number",
+            "title": "Penalty"
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "serious",
+              "warning",
+              "info"
+            ],
+            "title": "Severity"
+          },
+          "params": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Params"
+          },
+          "action": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Action"
+          }
+        },
+        "type": "object",
+        "required": [
+          "code",
+          "count",
+          "penalty",
+          "severity",
+          "params",
+          "action"
+        ],
+        "title": "QualityIssue"
+      },
+      "QualityNote": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Code"
+          },
+          "count": {
+            "type": "integer",
+            "title": "Count"
+          }
+        },
+        "type": "object",
+        "required": [
+          "code",
+          "count"
+        ],
+        "title": "QualityNote"
+      },
+      "QualityReport": {
+        "properties": {
+          "dataset_id": {
+            "type": "integer",
+            "title": "Dataset Id"
+          },
+          "score": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Score"
+          },
+          "grade": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "excellent",
+                  "good",
+                  "fair",
+                  "poor"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Grade"
+          },
+          "rows": {
+            "type": "integer",
+            "title": "Rows"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/QualityIssue"
+            },
+            "type": "array",
+            "title": "Issues"
+          },
+          "fields": {
+            "items": {
+              "$ref": "#/components/schemas/FieldCompleteness"
+            },
+            "type": "array",
+            "title": "Fields"
+          },
+          "notes": {
+            "items": {
+              "$ref": "#/components/schemas/QualityNote"
+            },
+            "type": "array",
+            "title": "Notes"
+          }
+        },
+        "type": "object",
+        "required": [
+          "dataset_id",
+          "score",
+          "grade",
+          "rows",
+          "issues",
+          "fields",
+          "notes"
+        ],
+        "title": "QualityReport"
+      },
+      "Reason": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Code"
+          },
+          "params": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Params"
+          }
+        },
+        "type": "object",
+        "required": [
+          "code"
+        ],
+        "title": "Reason",
+        "description": "A machine-readable explanation, e.g. ``header_match{keyword: \"tarih\"}``."
+      },
+      "RecentQuestion": {
+        "properties": {
+          "question": {
+            "type": "string",
+            "title": "Question"
+          },
+          "asked_at": {
+            "type": "string",
+            "title": "Asked At"
+          },
+          "ok": {
+            "type": "boolean",
+            "title": "Ok"
+          }
+        },
+        "type": "object",
+        "required": [
+          "question",
+          "asked_at",
+          "ok"
+        ],
+        "title": "RecentQuestion"
+      },
+      "RecordFact": {
+        "properties": {
+          "record_id": {
+            "type": "integer",
+            "title": "Record Id"
+          },
+          "filename": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Filename"
+          },
+          "sheet": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sheet"
+          },
+          "row": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Row"
+          },
+          "name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          },
+          "date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Date"
+          },
+          "amount": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Amount"
+          },
+          "debit": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Debit"
+          },
+          "credit": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Credit"
+          }
+        },
+        "type": "object",
+        "required": [
+          "record_id"
+        ],
+        "title": "RecordFact"
+      },
+      "RecordsPage": {
+        "properties": {
+          "total": {
+            "type": "integer",
+            "title": "Total"
+          },
+          "limit": {
+            "type": "integer",
+            "title": "Limit"
+          },
+          "offset": {
+            "type": "integer",
+            "title": "Offset"
+          },
+          "rows": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Rows"
+          },
+          "marks": {
+            "additionalProperties": {
+              "additionalProperties": {
+                "$ref": "#/components/schemas/CellMark"
+              },
+              "type": "object"
+            },
+            "type": "object",
+            "title": "Marks",
+            "default": {}
+          }
+        },
+        "type": "object",
+        "required": [
+          "total",
+          "limit",
+          "offset",
+          "rows"
+        ],
+        "title": "RecordsPage"
+      },
+      "RenameIn": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Name"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "title": "RenameIn"
+      },
+      "ResolutionOut": {
+        "properties": {
+          "version_id": {
+            "type": "integer",
+            "title": "Version Id"
+          },
+          "entities": {
+            "type": "integer",
+            "title": "Entities"
+          },
+          "pending": {
+            "type": "integer",
+            "title": "Pending"
+          }
+        },
+        "type": "object",
+        "required": [
+          "version_id",
+          "entities",
+          "pending"
+        ],
+        "title": "ResolutionOut"
+      },
+      "RestoreOut": {
+        "properties": {
+          "version_id": {
+            "type": "integer",
+            "title": "Version Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "version_id"
+        ],
+        "title": "RestoreOut"
+      },
+      "SourceColumnOut": {
+        "properties": {
+          "col_index": {
+            "type": "integer",
+            "title": "Col Index"
+          },
+          "header": {
+            "type": "string",
+            "title": "Header"
+          },
+          "role": {
+            "type": "string",
+            "title": "Role"
+          },
+          "confidence": {
+            "type": "number",
+            "title": "Confidence"
+          },
+          "engine": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Engine"
+          },
+          "reasons": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Reasons",
+            "default": []
+          },
+          "field_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Field Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "col_index",
+          "header",
+          "role",
+          "confidence",
+          "field_id"
+        ],
+        "title": "SourceColumnOut"
+      },
+      "TableDiff": {
+        "properties": {
+          "table_id": {
+            "type": "integer",
+            "title": "Table Id"
+          },
+          "upload_id": {
+            "type": "integer",
+            "title": "Upload Id"
+          },
+          "filename": {
+            "type": "string",
+            "title": "Filename"
+          },
+          "sheet": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sheet"
+          },
+          "header_row": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Header Row"
+          },
+          "dataset_id": {
+            "type": "integer",
+            "title": "Dataset Id"
+          },
+          "columns": {
+            "items": {
+              "$ref": "#/components/schemas/SourceColumnOut"
+            },
+            "type": "array",
+            "title": "Columns"
+          },
+          "fields": {
+            "items": {
+              "$ref": "#/components/schemas/FieldOut"
+            },
+            "type": "array",
+            "title": "Fields"
+          },
+          "total_rows": {
+            "type": "integer",
+            "title": "Total Rows"
+          },
+          "offset": {
+            "type": "integer",
+            "title": "Offset"
+          },
+          "rows": {
+            "items": {
+              "$ref": "#/components/schemas/DiffRow"
+            },
+            "type": "array",
+            "title": "Rows"
+          }
+        },
+        "type": "object",
+        "required": [
+          "table_id",
+          "upload_id",
+          "filename",
+          "sheet",
+          "header_row",
+          "dataset_id",
+          "columns",
+          "fields",
+          "total_rows",
+          "offset",
+          "rows"
+        ],
+        "title": "TableDiff"
+      },
+      "TableSummary": {
+        "properties": {
+          "table_id": {
+            "type": "integer",
+            "title": "Table Id"
+          },
+          "dataset_id": {
+            "type": "integer",
+            "title": "Dataset Id"
+          },
+          "sheet": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sheet"
+          },
+          "created_dataset": {
+            "type": "boolean",
+            "title": "Created Dataset"
+          },
+          "columns": {
+            "items": {
+              "$ref": "#/components/schemas/ColumnInference"
+            },
+            "type": "array",
+            "title": "Columns"
+          },
+          "rows_total": {
+            "type": "integer",
+            "title": "Rows Total"
+          },
+          "rows_imported": {
+            "type": "integer",
+            "title": "Rows Imported"
+          },
+          "duplicates": {
+            "type": "integer",
+            "title": "Duplicates"
+          },
+          "skipped": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "type": "object",
+            "title": "Skipped"
+          },
+          "transforms": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "type": "object",
+            "title": "Transforms"
+          }
+        },
+        "type": "object",
+        "required": [
+          "table_id",
+          "dataset_id",
+          "sheet",
+          "created_dataset",
+          "columns",
+          "rows_total",
+          "rows_imported",
+          "duplicates",
+          "skipped",
+          "transforms"
+        ],
+        "title": "TableSummary"
+      },
+      "TransformKindCount": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "title": "Kind"
+          },
+          "count": {
+            "type": "integer",
+            "title": "Count"
+          },
+          "undone": {
+            "type": "integer",
+            "title": "Undone"
+          }
+        },
+        "type": "object",
+        "required": [
+          "kind",
+          "count",
+          "undone"
+        ],
+        "title": "TransformKindCount"
+      },
+      "TransformListItem": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "kind": {
+            "type": "string",
+            "title": "Kind"
+          },
+          "before": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Before"
+          },
+          "after": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "After"
+          },
+          "confidence": {
+            "type": "number",
+            "title": "Confidence"
+          },
+          "detail": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Detail"
+          },
+          "undone": {
+            "type": "boolean",
+            "title": "Undone"
+          },
+          "record_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Record Id"
+          },
+          "row_index": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Row Index"
+          },
+          "field_key": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Field Key"
+          },
+          "field_label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Field Label"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "before",
+          "after",
+          "confidence",
+          "detail",
+          "undone",
+          "record_id",
+          "row_index",
+          "field_key",
+          "field_label"
+        ],
+        "title": "TransformListItem"
+      },
+      "TransformOut": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "kind": {
+            "type": "string",
+            "title": "Kind"
+          },
+          "before": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Before"
+          },
+          "after": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "After"
+          },
+          "confidence": {
+            "type": "number",
+            "title": "Confidence"
+          },
+          "detail": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Detail"
+          },
+          "undone": {
+            "type": "boolean",
+            "title": "Undone"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "before",
+          "after",
+          "confidence",
+          "detail",
+          "undone"
+        ],
+        "title": "TransformOut"
+      },
+      "TransformPage": {
+        "properties": {
+          "total": {
+            "type": "integer",
+            "title": "Total"
+          },
+          "summary": {
+            "items": {
+              "$ref": "#/components/schemas/TransformKindCount"
+            },
+            "type": "array",
+            "title": "Summary"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/TransformListItem"
+            },
+            "type": "array",
+            "title": "Items"
+          }
+        },
+        "type": "object",
+        "required": [
+          "total",
+          "summary",
+          "items"
+        ],
+        "title": "TransformPage"
+      },
+      "UndoOut": {
+        "properties": {
+          "version_id": {
+            "type": "integer",
+            "title": "Version Id"
+          },
+          "entities": {
+            "type": "integer",
+            "title": "Entities"
+          },
+          "pending": {
+            "type": "integer",
+            "title": "Pending"
+          },
+          "candidate_id": {
+            "type": "integer",
+            "title": "Candidate Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "version_id",
+          "entities",
+          "pending",
+          "candidate_id"
+        ],
+        "title": "UndoOut"
+      },
+      "UploadDetail": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "workspace_id": {
+            "type": "integer",
+            "title": "Workspace Id"
+          },
+          "version_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Version Id"
+          },
+          "filename": {
+            "type": "string",
+            "title": "Filename"
+          },
+          "size_bytes": {
+            "type": "integer",
+            "title": "Size Bytes"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "error_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Code"
+          },
+          "created_at": {
+            "type": "string",
+            "title": "Created At"
+          },
+          "tables": {
+            "items": {
+              "$ref": "#/components/schemas/UploadTableOut"
+            },
+            "type": "array",
+            "title": "Tables"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "workspace_id",
+          "version_id",
+          "filename",
+          "size_bytes",
+          "status",
+          "error_code",
+          "created_at",
+          "tables"
+        ],
+        "title": "UploadDetail"
+      },
+      "UploadListItem": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "filename": {
+            "type": "string",
+            "title": "Filename"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "error_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Code"
+          },
+          "created_at": {
+            "type": "string",
+            "title": "Created At"
+          },
+          "size_bytes": {
+            "type": "integer",
+            "title": "Size Bytes"
+          },
+          "tables": {
+            "type": "integer",
+            "title": "Tables"
+          },
+          "records": {
+            "type": "integer",
+            "title": "Records"
+          },
+          "duplicates": {
+            "type": "integer",
+            "title": "Duplicates"
+          },
+          "first_table_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "First Table Id"
+          },
+          "dataset_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dataset Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "filename",
+          "status",
+          "error_code",
+          "created_at",
+          "size_bytes",
+          "tables",
+          "records",
+          "duplicates",
+          "first_table_id",
+          "dataset_id"
+        ],
+        "title": "UploadListItem"
+      },
+      "UploadOut": {
+        "properties": {
+          "upload_id": {
+            "type": "integer",
+            "title": "Upload Id"
+          },
+          "version_id": {
+            "type": "integer",
+            "title": "Version Id"
+          },
+          "filename": {
+            "type": "string",
+            "title": "Filename"
+          },
+          "tables": {
+            "items": {
+              "$ref": "#/components/schemas/TableSummary"
+            },
+            "type": "array",
+            "title": "Tables"
+          },
+          "events": {
+            "items": {
+              "$ref": "#/components/schemas/PipelineEvent"
+            },
+            "type": "array",
+            "title": "Events"
+          }
+        },
+        "type": "object",
+        "required": [
+          "upload_id",
+          "version_id",
+          "filename",
+          "tables",
+          "events"
+        ],
+        "title": "UploadOut"
+      },
+      "UploadTableOut": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "sheet": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sheet"
+          },
+          "header_row": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Header Row"
+          },
+          "dataset_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dataset Id"
+          },
+          "columns": {
+            "items": {
+              "$ref": "#/components/schemas/SourceColumnOut"
+            },
+            "type": "array",
+            "title": "Columns"
+          },
+          "transforms": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "type": "object",
+            "title": "Transforms"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "sheet",
+          "header_row",
+          "dataset_id",
+          "columns",
+          "transforms"
+        ],
+        "title": "UploadTableOut"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      },
+      "VersionItem": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "kind": {
+            "type": "string",
+            "title": "Kind"
+          },
+          "message": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Message"
+          },
+          "details": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Details"
+          },
+          "created_at": {
+            "type": "string",
+            "title": "Created At"
+          },
+          "added": {
+            "type": "integer",
+            "title": "Added"
+          },
+          "removed": {
+            "type": "integer",
+            "title": "Removed"
+          },
+          "changed": {
+            "type": "integer",
+            "title": "Changed"
+          },
+          "is_current": {
+            "type": "boolean",
+            "title": "Is Current"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "message",
+          "details",
+          "created_at",
+          "added",
+          "removed",
+          "changed",
+          "is_current"
+        ],
+        "title": "VersionItem"
+      },
+      "VersionOut": {
+        "properties": {
+          "version_id": {
+            "type": "integer",
+            "title": "Version Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "version_id"
+        ],
+        "title": "VersionOut"
+      },
+      "WorkspaceIn": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Name"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "title": "WorkspaceIn"
+      },
+      "WorkspaceOut": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "is_demo": {
+            "type": "boolean",
+            "title": "Is Demo"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "is_demo"
+        ],
+        "title": "WorkspaceOut"
+      },
+      "WorkspaceSummary": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "is_demo": {
+            "type": "boolean",
+            "title": "Is Demo"
+          },
+          "created_at": {
+            "type": "string",
+            "title": "Created At"
+          },
+          "datasets": {
+            "type": "integer",
+            "title": "Datasets"
+          },
+          "uploads": {
+            "type": "integer",
+            "title": "Uploads"
+          },
+          "records": {
+            "type": "integer",
+            "title": "Records"
+          },
+          "entities": {
+            "type": "integer",
+            "title": "Entities"
+          },
+          "pending_matches": {
+            "type": "integer",
+            "title": "Pending Matches"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "is_demo",
+          "created_at",
+          "datasets",
+          "uploads",
+          "records",
+          "entities",
+          "pending_matches"
+        ],
+        "title": "WorkspaceSummary"
+      }
+    }
+  }
+}
