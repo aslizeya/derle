@@ -43,6 +43,7 @@ class Database:
             )
             row = self._conn.execute("SELECT max(version) FROM schema_migrations").fetchone()
             current = row[0] if row and row[0] is not None else 0
+            applied = False
             for version, sql in enumerate(MIGRATIONS, start=1):
                 if version <= current:
                     continue
@@ -53,9 +54,16 @@ class Database:
                         "INSERT INTO schema_migrations (version) VALUES (?)", [version]
                     )
                     self._conn.execute("COMMIT")
+                    applied = True
                 except Exception:
                     self._conn.execute("ROLLBACK")
                     raise
+            if applied:
+                # DuckDB 1.5 cannot replay ``ALTER TABLE`` from the write-ahead log for a table
+                # whose column defaults to ``nextval(...)`` (migration 3 does exactly that):
+                # after a crash the file would refuse to open. Checkpointing moves the schema
+                # change into the database file, so the log only ever holds data changes.
+                self._conn.execute("CHECKPOINT")
 
     def _harden(self) -> None:
         """Defence in depth for user-facing SQL (natural-language queries): the app never
