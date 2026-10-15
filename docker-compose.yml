@@ -1,0 +1,36 @@
+# One command, fully local:   docker compose up --build   →   http://localhost:3000
+# Data lives in the named volume "derle-data" and survives restarts.
+# AI is off unless you put DERLE_LLM_PROVIDER=anthropic and ANTHROPIC_API_KEY in .env.
+
+services:
+  api:
+    build: ./apps/api
+    restart: unless-stopped
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      DERLE_DATA_DIR: /data
+    volumes:
+      - derle-data:/data
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/v1/health')"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 10s
+
+  web:
+    build:
+      context: ./apps/web
+      args:
+        DERLE_API_URL: http://api:8000
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    depends_on:
+      api:
+        condition: service_healthy
+
+volumes:
+  derle-data:

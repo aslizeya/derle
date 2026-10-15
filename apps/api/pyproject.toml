@@ -2,7 +2,7 @@
 name = "derle"
 version = "0.1.0"
 description = "Turns scattered spreadsheets into a clean, persistent, explainable database."
-readme = "../../README.md"
+readme = "README.md"
 license = "MIT"
 requires-python = ">=3.12"
 dependencies = [
