@@ -23,6 +23,29 @@ export type UploadJob = {
 
 let counter = 0;
 
+/**
+ * Upload with one automatic retry, but only when the request failed before the server sent
+ * a single event: then it never reached the pipeline and retrying cannot double-import.
+ */
+async function uploadOnce(
+  workspaceId: number,
+  file: File,
+  onEvent: (event: PipelineEvent) => void,
+): Promise<UploadResult> {
+  let received = 0;
+  const handler = (event: PipelineEvent) => {
+    received += 1;
+    onEvent(event);
+  };
+  try {
+    return await uploadWithEvents(workspaceId, file, { onEvent: handler });
+  } catch (error) {
+    const transient = error instanceof UploadError && ["network", "internal_error"].includes(error.code);
+    if (!transient || received > 0) throw error;
+    return uploadWithEvents(workspaceId, file, { onEvent: handler });
+  }
+}
+
 /** Processes dropped files one at a time (DuckDB has a single writer) and keeps their events. */
 export function useUploadQueue(workspaceId: number) {
   const [jobs, setJobs] = useState<UploadJob[]>([]);
@@ -42,9 +65,9 @@ export function useUploadQueue(workspaceId: number) {
         const id = job.id;
         update(id, () => ({ status: "processing" }));
         try {
-          const result = await uploadWithEvents(workspaceId, job.file, {
-            onEvent: (event) => update(id, (current) => ({ events: [...current.events, event] })),
-          });
+          const result = await uploadOnce(workspaceId, job.file, (event) =>
+            update(id, (current) => ({ events: [...current.events, event] })),
+          );
           update(id, () => ({ status: "done", result }));
         } catch (error) {
           const code = error instanceof UploadError ? error.code : "internal_error";

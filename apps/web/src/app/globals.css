@@ -13,16 +13,16 @@
   --paper-sunken: #ece4d3;
   --ink: #221f1a;
   --ink-muted: #5e574b;
-  --ink-faint: #8a8172;
+  --ink-faint: #6b6355; /* ≥ 4.5:1 on every paper surface (WCAG AA) */
   --rule: #e1d6c1;
   --rule-strong: #cbbd9f;
   --accent: #2547a8;
   --accent-hover: #1c3a8f;
   --accent-ink: #ffffff;
   --accent-soft: #e2e8f7;
-  --ok: #2f7a4a;
+  --ok: #276a3f;
   --ok-soft: #e1efe3;
-  --warn: #a8640a;
+  --warn: #8c5208;
   --warn-soft: #f6e8cf;
   --bad: #b13a2e;
   --bad-soft: #f6dfda;
@@ -41,7 +41,7 @@
   --paper-sunken: #0f0e0b;
   --ink: #efe8da;
   --ink-muted: #b4aa96;
-  --ink-faint: #81786a;
+  --ink-faint: #8f8676;
   --rule: #2d2a22;
   --rule-strong: #443e31;
   --accent: #8ea7ff;

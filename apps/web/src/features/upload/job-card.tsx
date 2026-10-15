@@ -164,6 +164,9 @@ function ColumnChip({ params }: { params: Params }) {
   const tr = useTranslations("roles");
   const role = str(params, "role");
   const label = KNOWN_ROLES.has(role) ? tr(role as "party") : role;
+  const header = str(params, "header");
+  // Show the file's own header only when it says something different ("Kim" → Müşteri).
+  const showHeader = header.toLocaleLowerCase("tr") !== label.toLocaleLowerCase("tr");
   return (
     <motion.div
       layout
@@ -178,7 +181,9 @@ function ColumnChip({ params }: { params: Params }) {
           <RoleIcon role={role} className="size-3.5 text-accent" />
           {label}
         </p>
-        <p className="max-w-[10rem] truncate font-mono text-[11px] text-ink-faint">{str(params, "header")}</p>
+        {showHeader ? (
+          <p className="max-w-[10rem] truncate font-mono text-[11px] text-ink-faint">{header}</p>
+        ) : null}
       </div>
     </motion.div>
   );

@@ -31,6 +31,16 @@ export function formatMonth(value: string): string {
 
 export type Series = { key: string; label: string };
 
+/** Round axis ticks (0, 10 B, 20 B, …): step is 1, 2, 2.5 or 5 × 10ⁿ, at most ~5 steps. */
+export function niceTicks(max: number, target = 5): number[] {
+  if (!(max > 0)) return [0];
+  const raw = max / target;
+  const magnitude = 10 ** Math.floor(Math.log10(raw));
+  const step = ([1, 2, 2.5, 5, 10].find((m) => m * magnitude >= raw) ?? 10) * magnitude;
+  const top = Math.ceil(max / step) * step;
+  return Array.from({ length: Math.round(top / step) + 1 }, (_, i) => i * step);
+}
+
 export function Legend({ series }: { series: Series[] }) {
   if (series.length < 2) return null;
   return (
@@ -83,6 +93,8 @@ export function ColumnChart({
   series: Series[];
   height?: number;
 }) {
+  const max = Math.max(0, ...rows.flatMap((r) => series.map((s) => Number(r[s.key]) || 0)));
+  const ticks = niceTicks(max);
   return (
     <div className="flex flex-col gap-3">
       <Legend series={series} />
@@ -98,6 +110,8 @@ export function ColumnChart({
               tick={{ fill: "var(--ink-faint)", fontSize: 12 }}
             />
             <YAxis
+              ticks={ticks}
+              domain={[0, ticks[ticks.length - 1] ?? 0]}
               tickFormatter={(v: number) => compactMoney.format(v)}
               tickLine={false}
               axisLine={false}

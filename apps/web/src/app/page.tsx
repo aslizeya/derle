@@ -17,7 +17,8 @@ import { Logo, ThemeToggle } from "@/components/brand";
 import { BeforeAfter } from "@/components/landing/before-after";
 import { DemoButton, UploadOwnButton } from "@/components/landing/start-buttons";
 
-const REPO_URL = "https://github.com/";
+// Set NEXT_PUBLIC_REPO_URL at build time to show a "source code" link.
+const REPO_URL = process.env.NEXT_PUBLIC_REPO_URL;
 
 // Mean over five generated ledgers, see README → Benchmark. Kept in sync by hand.
 const BENCHMARK = { dates: "%100", auto: "0,90", reviewed: "0,93", cards: 11 };
@@ -52,9 +53,11 @@ export default async function LandingPage() {
           <a href="#neden" className="hidden rounded-lg px-3 py-2 hover:text-ink sm:block">
             {t("nav.why")}
           </a>
-          <a href={REPO_URL} className="hidden rounded-lg px-3 py-2 hover:text-ink sm:block">
-            {t("nav.source")}
-          </a>
+          {REPO_URL ? (
+            <a href={REPO_URL} className="hidden rounded-lg px-3 py-2 hover:text-ink sm:block">
+              {t("nav.source")}
+            </a>
+          ) : null}
           <ThemeToggle />
         </nav>
       </header>
