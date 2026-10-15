@@ -1,0 +1,8 @@
+# Keep LF in the repository and in working copies on every OS, so CI (Linux),
+# Docker builds and Windows checkouts see identical files.
+* text=auto eol=lf
+
+*.xlsx binary
+*.png binary
+*.gif binary
+*.ico binary
